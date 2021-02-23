@@ -47,6 +47,8 @@ class CMB2_Radio_Image {
 				esc_attr( $args['label'] )
 		);
 
+		$args['class'] = 'screen-reader-text';
+
 		return $args;
 	}
 
@@ -60,26 +62,24 @@ class CMB2_Radio_Image {
 				overflow: hidden;
 			}
 
-			.cmb-type-radio-image .cmb2-radio-list input[type="radio"] {
-				display: none;
-			}
-
-			.cmb-type-radio-image .cmb2-radio-list li {
+			.cmb-type-radio-image li {
 				display: inline-block;
-				margin-bottom: 0;
+				margin: 0 .5em;
 			}
 
-			.cmb-type-radio-image .cmb2-radio-list input[type="radio"] + label {
-				border: 3px solid #eee;
+			.cmb-type-radio-image input[type="radio"] + label {
 				display: block;
+				padding: .25em;
+				border: 3px solid #eee;
 			}
 
-			.cmb-type-radio-image .cmb2-radio-list input[type="radio"] + label:hover,
-			.cmb-type-radio-image .cmb2-radio-list input[type="radio"]:checked + label {
-				border-color: #ccc;
+			.cmb-type-radio-image input[type="radio"] + label:hover,
+			.cmb-type-radio-image input[type="radio"]:focus + label,
+			.cmb-type-radio-image input[type="radio"]:checked + label {
+				border-color: #5b9dd9;
 			}
 
-			.cmb-type-radio-image .cmb2-radio-list li label img {
+			.cmb-type-radio-image label img {
 				display: block;
 			}
 		</style>
