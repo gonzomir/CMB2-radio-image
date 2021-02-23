@@ -30,16 +30,22 @@ class CMB2_Radio_Image {
 
 
 	public function attributes( $args, $defaults, $field, $cmb ) {
-		if ( $field->args['type'] !== 'radio_image' || ! isset( $field->args['images'] ) ) {
+		if ( $field->args['type'] !== 'radio_image' || empty( $field->args['images'] ) ) {
 			return $args;
 		}
 
-		foreach ( $field->args['images'] as $field_id => $image ) {
-			if ( $field_id == $args['value'] ) {
-				$image = trailingslashit( $field->args['images_path'] ) . $field->args['images'][ $args['value'] ];
-				$args['label'] = '<img src="' . $image . '" alt="' . $args['label'] . '" />';
-			}
+		if ( empty( $field->args['images'][ $args['value'] ] ) ) {
+				return $args;
 		}
+
+		$path = $field->args['images_path'] ?: plugin_dir_url( __FILE__ );
+
+		$image = trailingslashit( $path ) . $field->args['images'][ $args['value'] ];
+		$args['label'] = sprintf(
+				'<img src="%1$s" alt="%2$s" />',
+				esc_url( $image ),
+				esc_attr( $args['label'] )
+		);
 
 		return $args;
 	}
